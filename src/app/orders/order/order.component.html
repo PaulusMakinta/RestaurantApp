@@ -1,0 +1,49 @@
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData">
+    <div class="row">
+       <div class="col-md-6">
+         <div class="form-group">
+           <label>Order No.</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                 <div class="input-group-text">
+                   #
+                 </div>
+              </div>
+              <input class="form-control"  name="OrderNo" [(ngModel)]="service.formData.OrderNo" #OrderNo="ngModel">
+            </div>
+           
+         </div>
+         <div class="form-group">
+             <label>Customer</label>
+             <select class="form-control"  name="CustomerId" [(ngModel)]="service.formData.CustomerId" #CustomerId="ngModel">
+               <option value="0">-Select-</option>
+             </select> 
+           </div>
+       </div>
+       <div class="col-md-6">
+           <div class="form-group">
+               <label>Payment Method</label>
+               <select class="form-control"  name="PMethod" [(ngModel)]="service.formData.PMethod" #PMethod="ngModel">
+                   <option value="">-Select-</option>
+                 </select>
+             </div>
+   
+             <div class="form-group">
+                 <label>Grand Total</label>
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <div class="input-group-text">
+                         R
+                       </div>
+                    </div>
+                    <input class="form-control"  name="GTotal" [(ngModel)]="service.formData.GTotal" #GTotal="ngModel">
+                  </div>
+               </div>
+         
+       </div>
+    </div>
+   
+       <div class="form-group">
+         <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+       </div>
+   </form>
