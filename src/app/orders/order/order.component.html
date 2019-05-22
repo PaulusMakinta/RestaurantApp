@@ -9,7 +9,7 @@
                    #
                  </div>
               </div>
-              <input class="form-control"  name="OrderNo" [(ngModel)]="service.formData.OrderNo" #OrderNo="ngModel">
+              <input class="form-control"  name="OrderNo" [(ngModel)]="service.formData.OrderNo" #OrderNo="ngModel" readonly>
             </div>
            
          </div>
@@ -25,6 +25,8 @@
                <label>Payment Method</label>
                <select class="form-control"  name="PMethod" [(ngModel)]="service.formData.PMethod" #PMethod="ngModel">
                    <option value="">-Select-</option>
+                   <option value="Cash">Cash</option>
+                   <option value="Card">Card</option>
                  </select>
              </div>
    
@@ -36,12 +38,43 @@
                          R
                        </div>
                     </div>
-                    <input class="form-control"  name="GTotal" [(ngModel)]="service.formData.GTotal" #GTotal="ngModel">
+                    <input class="form-control"  name="GTotal" [(ngModel)]="service.formData.GTotal" #GTotal="ngModel" readonly>
                   </div>
                </div>
          
        </div>
     </div>
+
+    <!--order Items Table -->
+    <table class="table table-borderless">
+      <thead class="thead-light">
+        <th>Food</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>
+          <a href="#" class="btn btn-sm btn-success text-white"><i class="fa fa-plus"></i>Add Item</a>
+        </th>
+      </thead>
+      <tbody>
+
+        
+          <tr *ngIf="service.orderItems.length==0">
+              <td class="font-italic text-center" colspan="5">
+                No Food item(s) Selected For This Order.
+              </td>
+            </tr>
+
+        <tr *ngFor="let item of service.orderItems">
+          <td>{{item.ItemName}}</td>
+          <td>{{item.Price}}</td>
+          <td>{{item.Quantity}}</td>
+          <td>{{item.Total}}</td>
+          <td></td>
+        </tr>
+
+      </tbody>
+    </table>
    
        <div class="form-group">
          <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
