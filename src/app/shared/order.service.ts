@@ -7,6 +7,6 @@ import { OrderItem } from './order-item.model';
 })
 export class OrderService {
   formData: Order;
-  OrderItems: OrderItem[];
+  orderItems: OrderItem[];
   constructor() { }
 }

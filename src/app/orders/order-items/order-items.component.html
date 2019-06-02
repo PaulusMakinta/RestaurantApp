@@ -1,3 +1,47 @@
-<p>
-  order-items works!
-</p>
+<h4 class="display-4"> Order Food Item</h4>
+<hr>
+<form #form="ngForm" autocomplete="off">
+  <div class="form-group">
+    <label>Food Item</label>
+    <select class="form-control"  name="ItemId" [(ngModel)]="formData.ItemId" #ItemId="ngModel">
+        <option value="0">-Select-</option>
+        <option *ngFor="let item of itemList" value="{{item.itemId}}">{{item.Name}}</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Price</label>
+        <div class="input-group">
+           <div class="input-group-prepend">
+              <div class="input-group-text">
+                R
+              </div>
+           </div>
+           <input class="form-control"  name="Price" [(ngModel)]="formData.Price" #Price="ngModel" readonly>
+         </div>
+     </div>
+
+    <div class="form-group col-md-6">
+          <label>Quantity</label>
+             <input class="form-control"  name="Quantity" [(ngModel)]="formData.Quantity" #Quantity="ngModel">
+    </div>
+  </div>
+
+  <div class="form-group">
+      <label>Total</label>
+      <div class="input-group">
+         <div class="input-group-prepend">
+            <div class="input-group-text">
+              R
+            </div>
+         </div>
+         <input class="form-control"  name="Total" [(ngModel)]="formData.Total" #Total="ngModel" readonly>
+       </div>
+   </div>
+
+   <div class="form-group">
+      <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+      <button type="button" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Close</button>
+    </div>
+</form>

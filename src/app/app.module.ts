@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './orders/order/order.component';
 import { OrderItemsComponent } from './orders/order-items/order-items.component';
 import { OrderService } from './shared/order.service';
+import { ItemService } from './shared/item.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +24,13 @@ import { OrderService } from './shared/order.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    HttpClientModule
   ],
-  providers: [OrderService],
+  entryComponents: [OrderItemsComponent],
+  providers: [OrderService, ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

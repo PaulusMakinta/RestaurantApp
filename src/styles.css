@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .jumbotron{
     padding-top: 0px;
-    background: #fff; 
+    background: #9faca5; 
 }
 
 .form-control{
@@ -10,6 +13,10 @@
 }
 
 table .table-hover tbody tr:hover {
+    cursor: pointer;
+}
+
+.btn{
     cursor: pointer;
 }
 
