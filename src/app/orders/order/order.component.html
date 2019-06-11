@@ -1,4 +1,5 @@
-<form #form="ngForm" autocomplete="off" *ngIf="service.formData">
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmitForm(form)">
+  <input type="hidden" name="OrderId" [(ngModel)]="service.formData.OrderId" #OrderId="ngModel">
     <div class="row">
        <div class="col-md-6">
          <div class="form-group">
@@ -15,8 +16,9 @@
          </div>
          <div class="form-group">
              <label>Customer</label>
-             <select class="form-control"  name="CustomerId" [(ngModel)]="service.formData.CustomerId" #CustomerId="ngModel">
+             <select class="form-control"  name="CustomerId" [(ngModel)]="service.formData.CustomerId" #CustomerId="ngModel" [class.is-invalid]="!isValid && service.formData.CustomerId==0">
                <option value="0">-Select-</option>
+               <option *ngFor="let item of customerList" value="{{item.CustomerId}}">{{item.Name}}</option>
              </select> 
            </div>
        </div>
@@ -58,11 +60,11 @@
       </thead>
       <tbody>
 
-          <!-- <tr *ngIf="service.orderItems.length==0">
+           <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length==0">
               <td class="font-italic text-center" colspan="5">
                 No Food item Selected For This Order.
               </td>
-            </tr> -->
+            </tr> 
 
         <tr *ngFor="let item of service.orderItems; let i = index;">
           <td>{{item.ItemName}}</td>
@@ -71,7 +73,7 @@
           <td>{{item.Total}}</td>
           <td>
               <a class="btn btn-sm btn-info text-white" (click)="playWithActions(i, service.formData.OrderId)"><i class="fa fa-pencil"></i></a>
-              <a class="btn btn-sm btn-danger text-white ml-1" (click)="playWithActions(i, service.formData.OrderId)"><i class="fa fa-pencil"></i></a>
+              <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem(item.OrderItemId, i)"><i class="fa fa-trash"></i></a>
           </td>
         </tr>
 
@@ -80,5 +82,6 @@
    
        <div class="form-group">
          <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+         <a class="btn btn-outline-dark ml-1" routerLink="/orders"><i class="fa fa-table"></i>View Orders</a>
        </div>
    </form>
